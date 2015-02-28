@@ -21,7 +21,7 @@ var nanrange = require( 'compute-nanrange' );
 
 #### nanrange( arr[, accessor] )
 
-Computes the range of an `array` ignoring non-numeric values. For primitive `arrays`,
+Computes the arithmetic range of an `array` ignoring non-numeric values. For primitive `arrays`,
 
 ``` javascript
 var arr = [ 2, null, 3, 4, null, 1 ];
