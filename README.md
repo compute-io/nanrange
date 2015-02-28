@@ -2,7 +2,7 @@ nanrange
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the arithmetic range of an array of values ignoring all non-numeric elements.
+> Computes the arithmetic range of an array ignoring non-numeric values.
 
 ## Installation
 
@@ -19,14 +19,40 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 var nanrange = require( 'compute-nanrange' );
 ```
 
-#### nanrange( arr )
+#### nanrange( arr[, accessor] )
 
-Returns the range of an `array` of values ignoring all non-numeric elements.
+Computes the range of an `array` ignoring non-numeric values. For primitive `arrays`,
 
 ``` javascript
-var r = range( [2, null, 3, 4, null, 1] );
+var arr = [ 2, null, 3, 4, null, 1 ];
+
+var r = range( arr );
 // returns [1,4]
 ```
+
+For object `arrays`, provide an accessor `function` for accessing `array` values
+
+``` javascript
+var arr = [
+	[1,2],
+	[2,null],
+	[3,3],
+	[4,4],
+	[5,null],
+	[6,1]
+];
+
+function getValue( d ) {
+	return d[ 1 ];
+}
+
+var r = range( arr, getValue );
+// returns [1,4]
+```
+
+__Note__: if an input `array` does not contain any `numeric` values, the function returns `null`.
+
+
 
 ## Examples
 
@@ -41,9 +67,7 @@ for ( var i = 0; i < data.length; i++ ) {
     data[ i ] = Math.random()*100;
   }
 }
-
 console.log( nanrange( data ) );
-
 ```
 
 To run the example code from the top-level application directory,
@@ -51,6 +75,8 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
+
 
 ## Tests
 
