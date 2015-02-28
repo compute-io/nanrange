@@ -4,7 +4,6 @@ nanrange
 
 > Computes the arithmetic range of an array of values ignoring all non-numeric elements.
 
-
 ## Installation
 
 ``` bash
@@ -17,18 +16,34 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var foo = require( 'compute-nanrange' );
+var nanrange = require( 'compute-nanrange' );
 ```
 
-#### foo( arr )
+#### nanrange( arr )
 
-What does this function do?
+Returns the range of an `array` of values ignoring all non-numeric elements.
 
+``` javascript
+var r = range( [2, null, 3, 4, null, 1] );
+// returns [1,4]
+```
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-nanrange' );
+var nanrange = require( 'compute-nanrange' );
+
+var data = new Array( 100 );
+for ( var i = 0; i < data.length; i++ ) {
+  if( i % 2 === 0 ){
+    data[ i ] = null;
+  } else {
+    data[ i ] = Math.random()*100;
+  }
+}
+
+console.log( nanrange( data ) );
+
 ```
 
 To run the example code from the top-level application directory,
@@ -36,7 +51,6 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
-
 
 ## Tests
 
@@ -69,7 +83,7 @@ $ make view-cov
 ---
 ## License
 
-[MIT license](http://opensource.org/licenses/MIT). 
+[MIT license](http://opensource.org/licenses/MIT).
 
 
 ## Copyright
